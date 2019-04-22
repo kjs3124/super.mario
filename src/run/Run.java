@@ -1,6 +1,6 @@
 package run;
 
-import views.MainFrame;
+import view.MainFrame;
 
 public class Run {
 
