@@ -3,14 +3,19 @@ package view;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+
+import model.dao.JoinDao;
 
 public class Join extends JPanel {
 	JScrollPane scrollPane;
@@ -87,6 +92,21 @@ public class Join extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+				try{
+					BufferedWriter bos = new BufferedWriter(new FileWriter("회원명단.txt",true));
+					bos.write(nameField.getText()+"/");
+					bos.write(textField.getText()+"/");
+					bos.write(passwordField.getText()+"/");
+					bos.write(hpField.getText()+"\r\n");
+					
+					bos.close();
+					JOptionPane.showMessageDialog(null, "회원가입을 축하합니다!!");
+					
+				}catch (Exception ex){
+					JOptionPane.showMessageDialog(null, "회원가입에 실패하였습니다.");
+				}
+				
+				
 			}
 		});
 

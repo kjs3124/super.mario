@@ -3,10 +3,14 @@ package view;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -64,7 +68,41 @@ public class Login extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+				//ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+				try{
+					String s = null;
+					
+					boolean result = true;
+					BufferedReader br = new BufferedReader(new FileReader("회원명단.txt"));
+					
+
+					while((s=br.readLine()) != null){
+						
+						String [] array=s.split("/");
+
+						if(textField.getText().equals(array[1])) {
+
+							if(passwordField.getText().equals(array[2]))
+							{
+								result = false;
+								JOptionPane.showMessageDialog(null, "로그인이 되었습니다!!");
+								ChangePanel.changePanel(mf, op, new todayCoin(mf));
+								
+							}
+						}
+					}
+					if(result) {
+						JOptionPane.showMessageDialog(null, "로그인 실패");
+						return;
+					}
+						
+					
+					
+					
+				}catch (IOException E10){
+					E10.printStackTrace();
+				}
+				
 			}
 		});
 
@@ -83,15 +121,30 @@ public class Login extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ChangePanel.changePanel(mf, op, new findIdPanel(mf));
+
 			}
 		});
 		this.add(lblFindId);
 
-		JLabel lblFindPw = new JLabel();
-		Image findPw = new ImageIcon("images/findpw.png").getImage().getScaledInstance(170, 80, 0);
-		lblFindPw.setIcon(new ImageIcon(findPw));
-		lblFindPw.setBounds(600, 570, 170, 80);
-		this.add(lblFindPw);
+		JButton lblFindpw = new JButton();
+		Image findpw = new ImageIcon("images/findpw.png").getImage().getScaledInstance(170, 80, 0);
+		lblFindpw.setIcon(new ImageIcon(findId));
+		lblFindpw.setBounds(600, 570, 170, 80);
+		lblFindpw.setOpaque(false);
+		lblFindpw.setContentAreaFilled(false);
+		lblFindpw.setBorderPainted(false);
+		
+		lblFindpw.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ChangePanel.changePanel(mf, op, new findpwPanel(mf));
+
+			}
+		});
+		this.add(lblFindId);
+		
+		this.add(lblFindpw);
 
 		this.add(label);
 		this.setSize(1000, 800);
