@@ -21,6 +21,7 @@ public class BackgroundPanel extends JPanel {
 		this.op = this;
 
 		this.setLayout(null);
+		
 
 		JLabel label = new JLabel(
 				new ImageIcon(new ImageIcon("images/start background.PNG").getImage().getScaledInstance(1000, 800, 0)));

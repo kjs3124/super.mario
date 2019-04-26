@@ -75,7 +75,7 @@ public class Join extends JPanel {
 		lblHp.setBounds(100, 380, 320, 50);
 		this.add(lblHp);
 
-		hpField = new JPasswordField();
+		hpField = new JTextField();
 		hpField.setBounds(380, 380, 320, 40);
 		this.add(hpField);
 

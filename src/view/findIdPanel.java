@@ -4,11 +4,15 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
@@ -18,8 +22,8 @@ public class findIdPanel extends JPanel {
 	JScrollPane scrollPane;
 
 	ImageIcon icon;
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField nameField;
+	private JTextField hpField;
 	private MainFrame mf;
 	private JPanel op;
 
@@ -29,19 +33,19 @@ public class findIdPanel extends JPanel {
 		JLabel label = new JLabel(
 				new ImageIcon(new ImageIcon("images/findid background.png").getImage().getScaledInstance(1000, 800, 0)));
 		label.setBounds(0, 0, 1000, 800);
-		
+
 		JLabel lblId = new JLabel();
 		lblId.setBounds(100, 480, 200, 40);
 		this.add(lblId);
 
-		textField = new JTextField();
-		textField.setBounds(415, 300, 260, 40);
-		this.add(textField);
-		textField.setColumns(10);
+		nameField = new JTextField();
+		nameField.setBounds(415, 300, 260, 40);
+		this.add(nameField);
+		nameField.setColumns(10);
 
-		passwordField = new JPasswordField();
-		passwordField.setBounds(415, 450, 260, 40);
-		this.add(passwordField);
+		hpField = new JTextField();
+		hpField.setBounds(415, 450, 260, 40);
+		this.add(hpField);
 
 
 		JButton lblFindId = new JButton();
@@ -50,15 +54,52 @@ public class findIdPanel extends JPanel {
 		lblFindId.setBounds(400, 570, 300, 200);
 		lblFindId.setContentAreaFilled(false);
 		lblFindId.setBorderPainted(false);
-		
+
 		lblFindId.addActionListener(new ActionListener() {
-		
+
 			@Override
+
 			public void actionPerformed(ActionEvent e) {
-				ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+
+				try{
+					String s = null;
+
+
+					BufferedReader br = new BufferedReader(new FileReader("회원명단.txt"));
+
+
+					while((s=br.readLine()) != null){
+
+						String [] array=s.split("/");
+
+						if(nameField.getText().equals(array[0])) {
+
+							if(hpField.getText().equals(array[3]))
+							{
+
+								JOptionPane.showMessageDialog(null, "아이디는 " + array[1] + "입니다.");
+								ChangePanel.changePanel(mf, op, new Login(mf));
+
+							}
+						}
+					}
+
+
+
+
+
+
+
+
+
+
+				}catch (IOException E10){
+					E10.printStackTrace();
+				}
 			}
 		});
-		
+
+
 		this.add(lblFindId);
 		this.add(label);
 		this.setSize(1000, 800);
