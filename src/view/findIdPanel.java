@@ -19,7 +19,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class findIdPanel extends JPanel {
-	JScrollPane scrollPane;
+	
 
 	ImageIcon icon;
 	private JTextField nameField;

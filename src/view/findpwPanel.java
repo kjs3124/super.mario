@@ -19,12 +19,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class findpwPanel extends JPanel {
-   JScrollPane scrollPane;
-   
+     
    ImageIcon icon;
    private JTextField idField;
    private JTextField nameField;
-   private JPasswordField passwordField;
    private MainFrame mf;
    private JPanel op;
    
@@ -92,6 +90,7 @@ public class findpwPanel extends JPanel {
  					}
 
 
+ 					
 
 
 

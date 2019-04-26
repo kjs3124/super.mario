@@ -17,10 +17,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 public class Login extends JPanel {
-   JScrollPane scrollPane;
-
+   
    ImageIcon icon;
-   private JTextField textField;
+   private JTextField idField;
    private JPasswordField passwordField;
    private MainFrame mf;
    private JPanel op;
@@ -42,10 +41,10 @@ public class Login extends JPanel {
       lblId.setBounds(320, 180, 320, 50);
       this.add(lblId);
 
-      textField = new JTextField();
-      textField.setBounds(400, 180, 220, 50);
-      this.add(textField);
-      textField.setColumns(10);
+      idField = new JTextField();
+     idField.setBounds(400, 180, 220, 50);
+      this.add(idField);
+     idField.setColumns(10);
 
       JLabel lblPw = new JLabel("PW");
       Image pw = new ImageIcon("images/PW.png").getImage().getScaledInstance(320, 50, 0);
@@ -80,7 +79,7 @@ public class Login extends JPanel {
                    
                    String [] array=s.split("/");
 
-                   if(textField.getText().equals(array[1])) {
+                   if(idField.getText().equals(array[1])) {
 
                       if(passwordField.getText().equals(array[2]))
                       {

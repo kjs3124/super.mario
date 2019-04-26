@@ -18,11 +18,11 @@ import javax.swing.JTextField;
 import model.dao.JoinDao;
 
 public class Join extends JPanel {
-	JScrollPane scrollPane;
+	
 	ImageIcon icon;
 	private MainFrame mf;
 	private JTextField nameField;
-	private JTextField textField;
+	private JTextField idField;
 	private JPasswordField passwordField;
 	private JTextField hpField;
 	private JPanel op;
@@ -54,10 +54,10 @@ public class Join extends JPanel {
 		lblId.setBounds(100, 180, 320, 50);
 		this.add(lblId);
 
-		textField = new JTextField();
-		textField.setBounds(380, 180, 320, 40);
-		this.add(textField);
-		textField.setColumns(10);
+		idField = new JTextField();
+		idField.setBounds(380, 180, 320, 40);
+		this.add(idField);
+		idField.setColumns(10);
 
 		JLabel lblPw = new JLabel();
 		Image pw = new ImageIcon("images/PASSWORD.png").getImage().getScaledInstance(200, 50, 0);
@@ -95,7 +95,7 @@ public class Join extends JPanel {
 				try{
 					BufferedWriter bos = new BufferedWriter(new FileWriter("회원명단.txt",true));
 					bos.write(nameField.getText()+"/");
-					bos.write(textField.getText()+"/");
+					bos.write(idField.getText()+"/");
 					bos.write(passwordField.getText()+"/");
 					bos.write(hpField.getText()+"\r\n");
 					

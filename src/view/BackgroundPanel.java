@@ -20,9 +20,9 @@ public class BackgroundPanel extends JPanel {
 		this.mf = mf;
 		this.op = this;
 
+		
 		this.setLayout(null);
 		
-
 		JLabel label = new JLabel(
 				new ImageIcon(new ImageIcon("images/start background.PNG").getImage().getScaledInstance(1000, 800, 0)));
 		label.setBounds(0, 0, 1000, 800);
@@ -63,10 +63,5 @@ public class BackgroundPanel extends JPanel {
 		mf.add(this);
 
 	}
-	/*
-	 * class MyMouseAdapter extends MouseAdapter{
-	 * 
-	 * @Override public void mouseClicked(MouseEvent e) {
-	 * ChangePanel.changePanel(mf, mainPage, new Login()); } }
-	 */
+
 }
