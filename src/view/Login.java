@@ -28,8 +28,7 @@ public class Login extends JPanel {
 		this.setVisible(true);
 		this.setLayout(null);
 
-		JLabel label = new JLabel(
-				new ImageIcon(new ImageIcon("images/gamebackground.jpg").getImage().getScaledInstance(1000, 800, 0)));
+		JLabel label = new JLabel(new ImageIcon(new ImageIcon("images/gamebackground.jpg").getImage().getScaledInstance(1000, 800, 0)));
 		label.setBounds(0, 0, 1000, 800);
 
 		JLabel lblId = new JLabel();
@@ -64,7 +63,7 @@ public class Login extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+				ChangePanel.changePanel(mf, op, new todayCoin(mf));
 			}
 		});
 
@@ -87,10 +86,21 @@ public class Login extends JPanel {
 		});
 		this.add(lblFindId);
 
-		JLabel lblFindPw = new JLabel();
+		JButton lblFindPw = new JButton();
 		Image findPw = new ImageIcon("images/findpw.png").getImage().getScaledInstance(170, 80, 0);
 		lblFindPw.setIcon(new ImageIcon(findPw));
 		lblFindPw.setBounds(600, 570, 170, 80);
+		lblFindPw.setOpaque(false);
+		lblFindPw.setContentAreaFilled(false);
+		lblFindPw.setBorderPainted(false);
+		
+		lblFindPw.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ChangePanel.changePanel(mf, op, new findPwPanel(mf));
+			}
+		});
 		this.add(lblFindPw);
 
 		this.add(label);

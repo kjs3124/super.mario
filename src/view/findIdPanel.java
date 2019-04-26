@@ -19,6 +19,7 @@ public class findIdPanel extends JPanel {
 
 	ImageIcon icon;
 	private JTextField textField;
+	private JTextField textField2;
 	private JPasswordField passwordField;
 	private MainFrame mf;
 	private JPanel op;
@@ -26,10 +27,10 @@ public class findIdPanel extends JPanel {
 	public findIdPanel(MainFrame mf) {
 		this.mf = mf;
 		this.op = this;
-		JLabel label = new JLabel(
-				new ImageIcon(new ImageIcon("images/findid background.png").getImage().getScaledInstance(1000, 800, 0)));
+		JLabel label = new JLabel(new ImageIcon(
+				new ImageIcon("images/findid background.png").getImage().getScaledInstance(1000, 800, 0)));
 		label.setBounds(0, 0, 1000, 800);
-		
+
 		JLabel lblId = new JLabel();
 		lblId.setBounds(100, 480, 200, 40);
 		this.add(lblId);
@@ -43,6 +44,10 @@ public class findIdPanel extends JPanel {
 		passwordField.setBounds(415, 450, 260, 40);
 		this.add(passwordField);
 
+		// 아이디 표시 칸
+		textField2 = new JTextField();
+		textField2.setBounds(415, 500, 260, 100);
+		this.add(textField2);
 
 		JButton lblFindId = new JButton();
 		Image findId = new ImageIcon("images/findid2.png").getImage().getScaledInstance(300, 100, 0);
@@ -50,15 +55,15 @@ public class findIdPanel extends JPanel {
 		lblFindId.setBounds(400, 570, 300, 200);
 		lblFindId.setContentAreaFilled(false);
 		lblFindId.setBorderPainted(false);
-		
+
 		lblFindId.addActionListener(new ActionListener() {
-		
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
 			}
 		});
-		
+
 		this.add(lblFindId);
 		this.add(label);
 		this.setSize(1000, 800);

@@ -3,6 +3,15 @@ package view;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.beans.EventHandler;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,6 +59,8 @@ public class Join extends JPanel {
 		this.add(lblId);
 
 		textField = new JTextField();
+		// textField.addActionListener(new EventHandler());
+
 		textField.setBounds(380, 180, 320, 40);
 		this.add(textField);
 		textField.setColumns(10);
@@ -70,7 +81,7 @@ public class Join extends JPanel {
 		lblHp.setBounds(100, 380, 320, 50);
 		this.add(lblHp);
 
-		hpField = new JPasswordField();
+		hpField = new JTextField();
 		hpField.setBounds(380, 380, 320, 40);
 		this.add(hpField);
 
@@ -86,7 +97,44 @@ public class Join extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+				String name = nameField.getText();
+				String id = textField.getText();
+				char[] pw = passwordField.getPassword();
+				String hpN = hpField.getText();
+				String pws = new String(pw, 0, pw.length);
+				
+				try(DataInputStream din = new DataInputStream(new FileInputStream(id));
+						DataOutputStream dout = new DataOutputStream(new FileOutputStream(id));) {
+					dout.writeUTF(name);
+					dout.writeUTF(pws);
+					dout.writeUTF(hpN);
+					
+					while(true) {
+						System.out.println("이름 : " + din.readUTF());
+						System.out.println("비밀번호 : " + din.readUTF());
+						System.out.println("휴대폰번호 : " + din.readUTF());
+					}
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					System.out.println("                        						  회원정보");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+					
+					
+				System.out.println("이름 : " + name + " ID : " + id + " PW : " + pws + " H.P : " + hpN);
+				if (name.equals("")) {
+					nameField.requestFocus();
+				} else if (id.equals("")) {
+					textField.requestFocus();
+				} else if(pw.equals("")){
+					passwordField.requestFocus();
+				} else if(hpN.equals("")) {
+					hpField.requestFocus();
+				}	else {
+						ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+				}
 			}
 		});
 
@@ -95,5 +143,15 @@ public class Join extends JPanel {
 		this.add(label);
 		this.setSize(1000, 800);
 	}
-//0421
+	// 0421
+	// class EventHandler implements ActionListener{
+	//
+	// @Override
+	// public void actionPerformed(ActionEvent e) {
+	// // TODO Auto-generated method stub
+	// String id = textField.getText();
+	// System.out.println(id);
+	// textField.setText("");
+	// }
+	// }
 }
