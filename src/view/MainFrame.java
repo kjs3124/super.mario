@@ -13,9 +13,6 @@ public class MainFrame extends JFrame{
 		
 		new BackgroundPanel(this);
 		
-	
-		
-		
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
