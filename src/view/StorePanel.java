@@ -6,15 +6,17 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-public class Shop extends JPanel {
+public class StorePanel extends JPanel {
 
 	private JPanel op;
 	private MainFrame mf;
 
-	public Shop(MainFrame mf) {
-
+	public StorePanel(MainFrame mf) {
+		JTextField tf = new JTextField(10);
 		this.mf = mf;
 		this.op = this;
 
@@ -33,7 +35,21 @@ public class Shop extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ChangePanel.changePanel(mf, op, new Join(mf));
+				int result = JOptionPane.showConfirmDialog(null,"아메리카노 쿠폰을 구매 하시겠습니까?","confirm",JOptionPane.YES_NO_OPTION);
+				if(result == JOptionPane.CLOSED_OPTION) {
+					tf.setText("just closed without selection");
+					ChangePanel.changePanel(mf, op, new StorePanel(mf));
+				}
+				else if(result == JOptionPane.YES_OPTION) {
+					tf.setText("Yes");
+					JOptionPane.showMessageDialog(null, "구매가 완료되었습니다.");
+					ChangePanel.changePanel(mf, op, new StorePanel(mf));
+				}
+				else {
+					tf.setText("No");
+					JOptionPane.showMessageDialog(null, "구매를 취소하였습니다.");
+					ChangePanel.changePanel(mf, op, new StorePanel(mf));
+				}
 			}
 		});
 		
@@ -50,7 +66,21 @@ public class Shop extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ChangePanel.changePanel(mf, op, new Login(mf));
+				int result = JOptionPane.showConfirmDialog(null,"한식 뷔페 쿠폰을 구매 하시겠습니까?","confirm",JOptionPane.YES_NO_OPTION);
+				if(result == JOptionPane.CLOSED_OPTION) {
+					tf.setText("just closed without selection");
+					ChangePanel.changePanel(mf, op, new StorePanel(mf));
+				}
+				else if(result == JOptionPane.YES_OPTION) {
+					tf.setText("Yes");
+					JOptionPane.showMessageDialog(null, "구매가 완료되었습니다.");
+					ChangePanel.changePanel(mf, op, new StorePanel(mf));
+				}
+				else {
+					tf.setText("No");
+					JOptionPane.showMessageDialog(null, "구매를 취소하였습니다.");
+					ChangePanel.changePanel(mf, op, new StorePanel(mf));
+				}
 			}
 		});
 		
@@ -63,7 +93,7 @@ public class Shop extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ChangePanel.changePanel(mf, op, new Join(mf));
+				ChangePanel.changePanel(mf, op, new todayCoin(mf));
 			}
 		});
 		this.add(label);

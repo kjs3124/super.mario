@@ -1,8 +1,10 @@
 package view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -24,6 +26,18 @@ public class RankPanel extends JPanel{
 			
 		JButton home = new JButton(new ImageIcon(new ImageIcon("images/home2.PNG").getImage().getScaledInstance(50, 50, 0)));
 		home.setBounds(30,30,50,50);
+		home.setOpaque(false);
+		home.setContentAreaFilled(false);
+		home.setBorderPainted(false);
+		
+		home.addActionListener(new ActionListener() {
+
+	          @Override
+	          public void actionPerformed(ActionEvent e) {
+	             ChangePanel.changePanel(mf, op, new todayCoin(mf));
+	          }
+	       });
+	       this.add(home);
 
 		JPanel panel = new JPanel();
 		panel.setSize(1000,800);

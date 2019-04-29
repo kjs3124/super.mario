@@ -65,7 +65,7 @@ public class todayCoin extends JPanel {
   		
   		@Override
   		public void actionPerformed(ActionEvent e) {
-  			ChangePanel.changePanel(mf, op, new Shop(mf));
+  			ChangePanel.changePanel(mf, op, new StorePanel(mf));
   			
   		}
   	});
