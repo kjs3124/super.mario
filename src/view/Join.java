@@ -3,8 +3,12 @@ package view;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -94,7 +98,8 @@ public class Join extends JPanel {
 					bos.write(nameField.getText()+"/");
 					bos.write(idField.getText()+"/");
 					bos.write(passwordField.getText()+"/");
-					bos.write(hpField.getText()+"\r\n");
+					bos.write(hpField.getText()+"/");
+					bos.write(0+"\r\n");
 					
 					bos.close();
 					JOptionPane.showMessageDialog(null, "회원가입을 축하합니다!!");
@@ -108,6 +113,78 @@ public class Join extends JPanel {
 		});
 
 		this.add(lblJoin);
+		
+		JButton lblback = new JButton();
+        Image back = new ImageIcon("images/backbutton.png").getImage().getScaledInstance(50, 50, 0);
+        lblback.setIcon(new ImageIcon(back));
+        lblback.setBounds(0, 0, 170, 80);
+        lblback.setOpaque(false);
+        lblback.setContentAreaFilled(false);
+        lblback.setBorderPainted(false);
+        
+        lblback.addActionListener(new ActionListener() {
+
+           @Override
+           public void actionPerformed(ActionEvent e) {
+              ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+           }
+        });
+        this.add(lblback);
+        
+        JButton overlapId = new JButton();
+        Image overlap = new ImageIcon("images/ovarlapId.png").getImage().getScaledInstance(130, 60, 0);
+        overlapId.setIcon(new ImageIcon(overlap));
+        overlapId.setBounds(750, 175, 130, 60);
+        overlapId.setOpaque(false);
+        overlapId.setContentAreaFilled(false);
+        overlapId.setBorderPainted(false);
+        overlapId.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+              BufferedReader br = null;
+                          try{
+					String s = null;
+
+
+	                boolean result = true;
+					br = new BufferedReader(new FileReader("회원명단.txt"));
+
+
+					while((s=br.readLine()) != null){
+
+						String [] array=s.split("/");
+
+						if(idField.getText().equals(array[0])) {
+
+							
+								 result = false;
+								JOptionPane.showMessageDialog(null, "중복된 아이디 입니다.");
+								return;
+
+							
+						}
+					}if(result) {
+		                   JOptionPane.showMessageDialog(null, "사용 가능한 아이디 입니다.");
+		                   return;
+		                }
+
+					
+
+
+
+
+
+
+
+
+				}catch (IOException E10){
+					E10.printStackTrace();
+				}
+			}
+		});
+
+        this.add(overlapId);
+
 
 		this.add(label);
 		this.setSize(1000, 800);

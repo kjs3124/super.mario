@@ -65,6 +65,7 @@ public class findIdPanel extends JPanel {
 					String s = null;
 
 
+	                boolean result = true;
 					BufferedReader br = new BufferedReader(new FileReader("회원명단.txt"));
 
 
@@ -76,15 +77,18 @@ public class findIdPanel extends JPanel {
 
 							if(hpField.getText().equals(array[3]))
 							{
-
+								 result = false;
 								JOptionPane.showMessageDialog(null, "아이디는 " + array[1] + "입니다.");
 								ChangePanel.changePanel(mf, op, new Login(mf));
 
 							}
 						}
-					}
+					}if(result) {
+		                   JOptionPane.showMessageDialog(null, "없는 정보입니다. 다시 입력하시요.");
+		                   return;
+		                }
 
-
+					
 
 
 
@@ -98,6 +102,23 @@ public class findIdPanel extends JPanel {
 				}
 			}
 		});
+		
+		JButton lblback = new JButton();
+	      Image back = new ImageIcon("images/backbutton.png").getImage().getScaledInstance(50, 50, 0);
+	      lblback.setIcon(new ImageIcon(back));
+	      lblback.setBounds(0, 0, 170, 80);
+	      lblback.setOpaque(false);
+	      lblback.setContentAreaFilled(false);
+	      lblback.setBorderPainted(false);
+	      
+	      lblback.addActionListener(new ActionListener() {
+
+	         @Override
+	         public void actionPerformed(ActionEvent e) {
+	            ChangePanel.changePanel(mf, op, new Login(mf));
+	         }
+	      });
+	      this.add(lblback);
 
 
 		this.add(lblFindId);

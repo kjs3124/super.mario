@@ -123,6 +123,24 @@ public class Login extends JPanel {
          }
       });
       this.add(lblFindId);
+      
+
+      JButton lblback = new JButton();
+      Image back = new ImageIcon("images/backbutton.png").getImage().getScaledInstance(50, 50, 0);
+      lblback.setIcon(new ImageIcon(back));
+      lblback.setBounds(0, 0, 170, 80);
+      lblback.setOpaque(false);
+      lblback.setContentAreaFilled(false);
+      lblback.setBorderPainted(false);
+      
+      lblback.addActionListener(new ActionListener() {
+
+         @Override
+         public void actionPerformed(ActionEvent e) {
+            ChangePanel.changePanel(mf, op, new BackgroundPanel(mf));
+         }
+      });
+      this.add(lblback);
 
       JButton lblFindPw = new JButton();
       Image findPw = new ImageIcon("images/findpw.png").getImage().getScaledInstance(170, 80, 0);
@@ -146,5 +164,9 @@ public class Login extends JPanel {
       this.setSize(1000, 800);
 
    }
+
+   
+   
+   
 
 }
